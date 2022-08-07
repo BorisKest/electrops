@@ -3,6 +3,7 @@ import 'package:electrops/src/UI/authentication_screen.dart';
 import 'package:electrops/src/UI/favorit_screen.dart';
 import 'package:electrops/src/UI/home_screen.dart';
 import 'package:electrops/src/UI/search_screen.dart';
+import 'package:electrops/src/bloc/authentication%20_bloc/authentication_bloc.dart';
 import 'package:electrops/src/bloc/settings_bloc/settings_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,13 @@ class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case '/':
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: AuthenticationBloc(),
+            child: const AuthenticationScreen(),
+          ),
+        );
+      case '/home':
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: _correntBloc,
