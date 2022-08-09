@@ -1,23 +1,23 @@
 part of 'authentication_bloc.dart';
 
 @immutable
-abstract class AuthenticationEvent {
+abstract class AuthenticationEvent extends Equatable {
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-class AuthenticationLoginInitEvent extends AuthenticationEvent {
-  final String login;
-  final String pass;
-  AuthenticationLoginInitEvent(this.login, this.pass);
+class AuthSignInRequestedEvent extends AuthenticationEvent {
+  final String email;
+  final String password;
 
-  @override
-  List<Object> get propsLogin => [login];
-  List<Object> get propsPass => [pass];
+  AuthSignInRequestedEvent(this.email, this.password);
 }
 
-class AuthenticationLoginSuccessEvent extends AuthenticationEvent {}
+class AuthSignUpRequestedEvent extends AuthenticationEvent {
+  final String email;
+  final String password;
 
-class AuthenticationLoginFailEvent extends AuthenticationEvent {}
+  AuthSignUpRequestedEvent(this.email, this.password);
+}
 
-class AuthenticationLogginOffEvent extends AuthenticationEvent {}
+class AuthSignOutRequestedEvent extends AuthenticationEvent {}

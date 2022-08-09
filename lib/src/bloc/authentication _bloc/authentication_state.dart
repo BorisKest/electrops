@@ -1,38 +1,27 @@
 part of 'authentication_bloc.dart';
 
-enum AppStatus { authenticated, unauthenticated }
-
 @immutable
-class AuthenticationState extends Emittable {
-  final AppStatus status;
-  final User user;
+abstract class AuthenticationState extends Equatable {}
 
-  AuthenticationState._({
-    required this.status,
-    this.user = User.empty,
-  });
-
-  AuthenticationState.authenticated(User user)
-      : this._(
-          status: AppStatus.authenticated,
-          user: user,
-        );
-  AuthenticationState.unauthenticated()
-      : this._(status: AppStatus.unauthenticated);
-
+class AuthLoadingState extends AuthenticationState {
   @override
-  List<Object> get props => [status, user];
-
-  @override
-  void emit(Object? state) {
-    // TODO: implement emit
-  }
+  List<Object?> get props => [];
 }
 
-class AuthenticationInitialState extends AuthenticationState {
-  AuthenticationInitialState.authenticated(super.user) : super.authenticated();
+class AuthenticatedState extends AuthenticationState {
+  @override
+  List<Object?> get props => [];
 }
 
-class AuthenticationLoginSuccessState extends AuthenticationState {}
+class AuthUnAuthenticatedState extends AuthenticationState {
+  @override
+  List<Object?> get props => [];
+}
 
-class AuthenticationLoginFaileState extends AuthenticationState {}
+class AuthenticationErrorState extends AuthenticationState {
+  final String error;
+
+  AuthenticationErrorState(this.error);
+  @override
+  List<Object?> get props => [error];
+}
