@@ -1,4 +1,6 @@
+import 'package:electrops/src/UI/drawer.dart';
 import 'package:electrops/src/UI/home_screen/widgets/navigation_card.dart';
+import 'package:electrops/src/UI/home_screen/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,29 +11,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<String> images = [
+    'assets/images/0.JPG',
+    'assets/images/1.JPG',
+    'assets/images/2.JPG',
+    'assets/images/3.JPG',
+    'assets/images/4.JPG',
+    'assets/images/5.JPG',
+    'assets/images/6.JPG',
+    'assets/images/7.JPG',
+    'assets/images/8.JPG',
+    'assets/images/9.JPG',
+    'assets/images/10.JPG'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            onPressed: () {
-              // buc buc bucket
-            },
-            icon: const Icon(Icons.shopping_bag),
-          ),
           const Center(
-            child: Text(
-              'Electrops',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            child: Padding(
+              padding: EdgeInsets.only(left: 50.0),
+              child: Text(
+                'Electrops',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
           const Spacer(),
           IconButton(
               onPressed: () {
-                // menu button
+                // buc buc bucket
               },
-              icon: const Icon(Icons.menu))
+              icon: const Icon(Icons.shopping_bag))
         ],
       ),
       body: CustomScrollView(
@@ -93,11 +105,49 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: const Text('Your recently viewed items'),
                 ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      ProductCard(
+                        image: images[0],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[2],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[3],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[4],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[5],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         ],
       ),
+      drawer: const DrawerWidget(),
     );
   }
 }

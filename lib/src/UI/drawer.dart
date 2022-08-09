@@ -27,8 +27,10 @@ class DrawerWidget extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(name),
+                        const Divider(),
                         Text(status),
                       ],
                     ),
@@ -38,8 +40,8 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Row(
-                children: const [Icon(Icons.home_max_outlined), Text('Home')]),
+            title:
+                Row(children: const [Icon(Icons.home_outlined), Text('Home')]),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/home');
             },
@@ -54,17 +56,15 @@ class DrawerWidget extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Row(children: const [
-              Icon(Icons.home_max_outlined),
-              Text('Search')
-            ]),
+            title: Row(
+                children: const [Icon(Icons.search_outlined), Text('Search')]),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/search');
             },
           ),
           ListTile(
             title: Row(children: const [
-              Icon(Icons.home_max_outlined),
+              Icon(Icons.account_box_outlined),
               Text('Account')
             ]),
             onTap: () {
@@ -73,7 +73,7 @@ class DrawerWidget extends StatelessWidget {
           ),
           ListTile(
             title: Row(children: const [
-              Icon(Icons.home_max_outlined),
+              Icon(Icons.settings_outlined),
               Text('Settings')
             ]),
             onTap: () {

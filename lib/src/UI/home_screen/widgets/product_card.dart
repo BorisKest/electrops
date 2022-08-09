@@ -13,21 +13,32 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: EdgeInsets.all(8),
       height: MediaQuery.of(context).size.height * 0.25,
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(29)),
-        clipBehavior: Clip.hardEdge,
-        child: Column(
-          children: [
-            Image.asset(image),
-            Spacer(),
-            Text(text),
-            Spacer(),
-            Text(price),
-            // change with db asap
-          ],
-        ),
+      width: MediaQuery.of(context).size.width * 0.25,
+      child: Column(
+        children: [
+          SizedBox(
+              height: MediaQuery.of(context).size.height * 0.12,
+              child: Image.asset(image)),
+
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 12),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            child: Text(
+              price,
+              style: const TextStyle(fontSize: 12),
+            ),
+          ),
+          // change with db asap
+        ],
       ),
     );
   }
