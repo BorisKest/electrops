@@ -43,7 +43,7 @@ class _AuthSignInScreenState extends State<AuthSignInScreen> {
           }
           if (state is AuthenticationErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
+              const SnackBar(
                 content: Text('state.error'),
               ),
             );
@@ -60,48 +60,82 @@ class _AuthSignInScreenState extends State<AuthSignInScreen> {
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Sign In', style: TextStyle(fontSize: 50)),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      CustomTextFild(
-                        controller: _emailController,
-                        textLabel: 'Email',
-                        obscureText: false,
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      CustomTextFild(
-                        obscureText: true,
-                        controller: _passwordController,
-                        textLabel: 'Password',
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _authenticationWithEmailAndPassword(context);
-                          },
-                          child: const Text(
-                            'Sign In',
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Sign In', style: TextStyle(fontSize: 50)),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        Center(
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
+                                  controller: _emailController,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Email',
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: (value) {
+                                    return value != null &&
+                                            !EmailValidator.validate(value)
+                                        ? 'Enter a valid email'
+                                        : null;
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 25,
+                                ),
+                                TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
+                                  controller: _passwordController,
+                                  obscureText: true,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Password',
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: (value) {
+                                    return value != null && value.length < 6
+                                        ? "Enter min. 6 characters"
+                                        : null;
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      const Text("Don't have an account?"),
-                      OutlinedButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacementNamed('/signup');
-                        },
-                        child: const Text('Sign Up'),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _authenticationWithEmailAndPassword(context);
+                            },
+                            child: const Text(
+                              'Sign In',
+                            ),
+                          ),
+                        ),
+                        const Text("Don't have an account?"),
+                        OutlinedButton(
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed('/signup');
+                          },
+                          child: const Text('Sign Up'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
