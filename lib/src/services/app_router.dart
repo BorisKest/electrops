@@ -4,6 +4,7 @@ import 'package:electrops/src/UI/auth_signUp_screen.dart';
 import 'package:electrops/src/UI/favorit_screen.dart';
 import 'package:electrops/src/UI/home_screen/home_screen.dart';
 import 'package:electrops/src/UI/search_screen.dart';
+import 'package:electrops/src/UI/upload.dart';
 import 'package:electrops/src/bloc/authentication%20_bloc/authentication_bloc.dart';
 import 'package:electrops/src/bloc/settings_bloc/settings_bloc.dart';
 import 'package:electrops/src/services/authentication.dart';
@@ -64,6 +65,13 @@ class AppRouter {
           builder: (_) => BlocProvider.value(
             value: _correntBloc,
             child: const SearchScreen(),
+          ),
+        );
+      case '/upload':
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: _correntBloc,
+            child: const UploadScreen(),
           ),
         );
       default: //logging screen

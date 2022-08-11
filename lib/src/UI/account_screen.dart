@@ -1,3 +1,4 @@
+import 'package:electrops/src/UI/drawer/drawer_menu.dart';
 import 'package:electrops/src/UI/widgets/text_fild.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -13,6 +14,8 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      drawer: const DrawerWidget(),
+    );
   }
 }

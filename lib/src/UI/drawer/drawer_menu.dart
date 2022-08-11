@@ -20,8 +20,9 @@ class DrawerWidget extends StatelessWidget {
               child: Row(
                 children: [
                   Material(
+                    clipBehavior: Clip.hardEdge,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
+                        borderRadius: BorderRadius.circular(100)),
                     child: Image.asset(profileImage),
                   ),
                   Padding(
@@ -60,6 +61,13 @@ class DrawerWidget extends StatelessWidget {
                 children: const [Icon(Icons.search_outlined), Text('Search')]),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/search');
+            },
+          ),
+          ListTile(
+            title: Row(children: const [Icon(Icons.upload), Text('Upload')]),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed('/upload'); // add settings screen
             },
           ),
           ListTile(
