@@ -24,7 +24,9 @@ class _UploadScreenState extends State<UploadScreen> {
           children: [
             const Text('Upload your photos'),
             FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                databloc.add(UploadDataEvent());
+              },
               child: const Icon(Icons.upload_rounded),
             )
           ],
