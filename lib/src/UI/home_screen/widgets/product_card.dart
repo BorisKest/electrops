@@ -14,24 +14,31 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       height: MediaQuery.of(context).size.height * 0.25,
       width: MediaQuery.of(context).size.width * 0.25,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
               height: MediaQuery.of(context).size.height * 0.12,
-              child: Image.asset(image)),
+              child: Image.asset(
+                image,
+                fit: BoxFit.fitHeight,
+              )),
 
           Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
             child: Text(
               text,
-              style: const TextStyle(fontSize: 12),
+              style: const TextStyle(
+                fontSize: 10,
+              ),
+              maxLines: 3,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+            padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
             child: Text(
               price,
               style: const TextStyle(fontSize: 12),

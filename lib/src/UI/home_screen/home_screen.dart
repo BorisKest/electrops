@@ -1,4 +1,4 @@
-import 'package:electrops/src/UI/drawer.dart';
+import 'package:electrops/src/UI/drawer/drawer_menu.dart';
 import 'package:electrops/src/UI/home_screen/widgets/navigation_card.dart';
 import 'package:electrops/src/UI/home_screen/widgets/product_card.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +93,106 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.trending_up_outlined, text: 'Trends'),
                 ],
               ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    // open recenly viewed items
+                  },
+                  child: const Text('Your recently viewed items'),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      ProductCard(
+                        image: images[0],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[2],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[3],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[4],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[5],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    // open recenly viewed items
+                  },
+                  child: const Text('Your recently viewed items'),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      ProductCard(
+                        image: images[0],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[2],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[3],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[4],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                      ProductCard(
+                        image: images[5],
+                        text:
+                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
+                        price: 'Free',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
           SliverToBoxAdapter(
