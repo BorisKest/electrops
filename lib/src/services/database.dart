@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -47,5 +48,25 @@ class UploadFile {
         print(e);
       }
     }
+  }
+}
+
+class FierStore {
+  CollectionReference db1 = FirebaseFirestore.instance.collection('users');
+
+  final user = <String, dynamic>{
+    'name': 'Ada',
+    'last': 'Lovelace',
+  };
+}
+
+Future<String?> getUser(String email) async {
+  try {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    final snapshot = await users.doc(email).get();
+    final data = snapshot.data() as Map<String, dynamic>;
+    return data['full_name'];
+  } catch (e) {
+    return 'Error fetching user';
   }
 }

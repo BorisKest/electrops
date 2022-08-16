@@ -16,7 +16,7 @@ class AppRouter {
   final SettingsBloc _correntBloc = SettingsBloc();
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case '/home': // "/"
+      case '/': // "/"
         return MaterialPageRoute(
           builder: (_) => RepositoryProvider(
             create: (context) => Authrnticator(),
@@ -40,7 +40,7 @@ class AppRouter {
             ),
           ),
         );
-      case '/': // /home
+      case '/home': //
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: _correntBloc,

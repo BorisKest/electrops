@@ -1,5 +1,6 @@
 import 'package:electrops/src/UI/widgets/text_fild.dart';
 import 'package:electrops/src/bloc/authentication%20_bloc/authentication_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:email_validator/email_validator.dart';
@@ -38,7 +39,8 @@ class _AuthSignInScreenState extends State<AuthSignInScreen> {
     return Scaffold(
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
-          if (state is AuthenticatedState) {
+          if (state is AuthenticatedState ||
+              FirebaseAuth.instance.currentUser != null) {
             Navigator.of(context).pushReplacementNamed('/home');
           }
           if (state is AuthenticationErrorState) {
