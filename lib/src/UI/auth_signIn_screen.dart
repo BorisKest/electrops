@@ -27,6 +27,12 @@ class _AuthSignInScreenState extends State<AuthSignInScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<AuthenticationBloc>(context).add(UserIsLogginEvent());
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
@@ -39,8 +45,7 @@ class _AuthSignInScreenState extends State<AuthSignInScreen> {
     return Scaffold(
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
-          if (state is AuthenticatedState ||
-              FirebaseAuth.instance.currentUser != null) {
+          if (state is AuthenticatedState) {
             Navigator.of(context).pushReplacementNamed('/home');
           }
           if (state is AuthenticationErrorState) {
@@ -142,7 +147,9 @@ class _AuthSignInScreenState extends State<AuthSignInScreen> {
                 ),
               );
             }
-            return Container();
+            return Container(
+              child: Text('a'),
+            );
           },
         ),
       ),

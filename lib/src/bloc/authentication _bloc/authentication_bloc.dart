@@ -13,6 +13,14 @@ class AuthenticationBloc
   final Authrnticator authrnticator;
   AuthenticationBloc({required this.authrnticator})
       : super(AuthUnAuthenticatedState()) {
+    on<UserIsLogginEvent>(
+      (event, emit) {
+        emit(AuthLoadingState());
+        if (FirebaseAuth.instance.currentUser != null) {
+          emit(AuthenticatedState());
+        }
+      },
+    );
     on<AuthSignInRequestedEvent>(
       (event, emit) async {
         emit(AuthLoadingState());
