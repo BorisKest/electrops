@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class User extends Equatable {
   final String id;
@@ -15,5 +16,4 @@ class User extends Equatable {
 
   @override
   List<Object?> get props => [id, email, name];
-  List<Object?> get authData => [email, password];
 }

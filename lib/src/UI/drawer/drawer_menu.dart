@@ -3,7 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class DrawerWidget extends StatelessWidget {
-  final String profileImage = 'assets/images/avatar.jpg';
+  final String profileImage = 'assets/images/avatar.png';
   final String name = 'John Doe';
   final String status = 'online';
   const DrawerWidget({Key? key}) : super(key: key);
