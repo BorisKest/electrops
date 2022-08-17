@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+List imagesFromFS = [];
+
 class Database {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 }
@@ -54,10 +56,14 @@ class UploadFile {
 class FierStore {
   CollectionReference db1 = FirebaseFirestore.instance.collection('users');
 
-  final user = <String, dynamic>{
-    'name': 'Ada',
-    'last': 'Lovelace',
-  };
+  List getFirebaseImageFolder() {
+    final Reference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('images/');
+    firebaseStorageRef.listAll().then((result) {
+      imagesFromFS = result as List;
+    });
+    return imagesFromFS;
+  }
 }
 
 Future<String?> getUser(String email) async {
