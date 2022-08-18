@@ -1,11 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class User extends Equatable {
   final String id;
   final String? email;
   final String? name;
+  final String? password;
 
-  const User({required this.id, this.email, this.name});
+  const User({required this.id, this.email, this.name, this.password});
 
   static const empty = User(id: '');
 

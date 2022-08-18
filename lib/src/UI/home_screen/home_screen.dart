@@ -1,6 +1,8 @@
 import 'package:electrops/src/UI/drawer/drawer_menu.dart';
 import 'package:electrops/src/UI/home_screen/widgets/navigation_card.dart';
 import 'package:electrops/src/UI/home_screen/widgets/product_card.dart';
+import 'package:electrops/src/models/firebase_file.dart';
+import 'package:electrops/src/services/database.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,19 +13,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> images = [
-    'assets/images/0.JPG',
-    'assets/images/1.JPG',
-    'assets/images/2.JPG',
-    'assets/images/3.JPG',
-    'assets/images/4.JPG',
-    'assets/images/5.JPG',
-    'assets/images/6.JPG',
-    'assets/images/7.JPG',
-    'assets/images/8.JPG',
-    'assets/images/9.JPG',
-    'assets/images/10.JPG'
-  ];
+  late Future<List<FirebaseFile>> futureFiles;
+
+  @override
+  void initState() {
+    super.initState();
+
+    futureFiles = FierStore().listAll('images/');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,142 +103,48 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: const Text('Your recently viewed items'),
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        image: images[0],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[2],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[3],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[4],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[5],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    // open recenly viewed items
+                FutureBuilder<List<FirebaseFile>>(
+                  future: futureFiles,
+                  builder: (context, snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.waiting:
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      default:
+                        if (snapshot.hasError) {
+                          return const Center(
+                              child: Text('Somthing go wrong! :('));
+                        } else {
+                          final files = snapshot.data!;
+                          return SizedBox(
+                            height: 400,
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 12,
+                                  height: 12,
+                                ),
+                                Expanded(
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: files.length,
+                                    itemBuilder: ((context, index) {
+                                      final file = files[index];
+
+                                      return ProductCard(
+                                          image: file.url,
+                                          text: file.name,
+                                          price: 'Free');
+                                    }),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        }
+                    }
                   },
-                  child: const Text('Your recently viewed items'),
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        image: images[0],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[2],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[3],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[4],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[5],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    // open recenly viewed items
-                  },
-                  child: const Text('Your recently viewed items'),
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        image: images[0],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[2],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[3],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[4],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                      ProductCard(
-                        image: images[5],
-                        text:
-                            "Some description for this This is a great photo that you can buy when I'm done making this app :)",
-                        price: 'Free',
-                      ),
-                    ],
-                  ),
                 ),
               ],
             ),

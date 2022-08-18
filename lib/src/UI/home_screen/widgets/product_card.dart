@@ -21,11 +21,12 @@ class ProductCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-              height: MediaQuery.of(context).size.height * 0.12,
-              child: Image.asset(
-                image,
-                fit: BoxFit.fitHeight,
-              )),
+            height: MediaQuery.of(context).size.height * 0.12,
+            child: Image.network(
+              image,
+              fit: BoxFit.fitHeight,
+            ),
+          ),
 
           Padding(
             padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),

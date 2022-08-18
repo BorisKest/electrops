@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:electrops/src/models/user_model.dart';
 import 'package:electrops/src/services/authentication.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 part 'authentication_event.dart';
@@ -12,6 +15,16 @@ class AuthenticationBloc
   final Authrnticator authrnticator;
   AuthenticationBloc({required this.authrnticator})
       : super(AuthUnAuthenticatedState()) {
+    on<UserIsLogginEvent>(
+      (event, emit) {
+        emit(AuthLoadingState());
+        if (FirebaseAuth.instance.currentUser != null) {
+          emit(AuthenticatedState());
+        } else {
+          emit(AuthUnAuthenticatedState());
+        }
+      },
+    );
     on<AuthSignInRequestedEvent>(
       (event, emit) async {
         emit(AuthLoadingState());

@@ -1,10 +1,14 @@
 import 'dart:io';
+import 'package:electrops/src/models/firebase_file.dart';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
+List imagesFromFS = [];
 
 class Database {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -47,5 +51,29 @@ class UploadFile {
         print(e);
       }
     }
+  }
+}
+
+class FierStore {
+  static Future<List<String>> _getDownloadLinks(List<Reference> refs) =>
+      Future.wait(refs.map((ref) => ref.getDownloadURL()).toList());
+
+  Future<List<FirebaseFile>> listAll(String path) async {
+    final storageRef = FirebaseStorage.instance.ref(path);
+    final listResult = await storageRef.listAll();
+
+    final urls = await _getDownloadLinks(listResult.items);
+
+    return urls
+        .asMap()
+        .map((index, url) {
+          final ref = listResult.items[index];
+          final name = ref.name;
+          final file = FirebaseFile(ref: ref, name: name, url: url);
+
+          return MapEntry(index, file);
+        })
+        .values
+        .toList();
   }
 }

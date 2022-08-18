@@ -1,9 +1,10 @@
+import 'package:electrops/src/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class DrawerWidget extends StatelessWidget {
-  final String profileImage = 'assets/images/avatar.jpg';
+  final String profileImage = 'assets/images/avatar.png';
   final String name = 'John Doe';
   final String status = 'online';
   const DrawerWidget({Key? key}) : super(key: key);
@@ -87,6 +88,16 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed('/home'); // add settings screen
+            },
+          ),
+          ListTile(
+            title: Row(children: const [
+              Icon(Icons.settings_outlined),
+              Text('Sign out')
+            ]),
+            onTap: () {
+              Authrnticator().signOut();
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
         ],
