@@ -1,3 +1,4 @@
+import 'package:electrops/src/services/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -87,6 +88,16 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed('/home'); // add settings screen
+            },
+          ),
+          ListTile(
+            title: Row(children: const [
+              Icon(Icons.settings_outlined),
+              Text('Sign out')
+            ]),
+            onTap: () {
+              Authrnticator().signOut();
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
         ],

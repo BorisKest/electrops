@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:electrops/src/models/user_model.dart';
 import 'package:electrops/src/services/authentication.dart';
@@ -18,6 +20,8 @@ class AuthenticationBloc
         emit(AuthLoadingState());
         if (FirebaseAuth.instance.currentUser != null) {
           emit(AuthenticatedState());
+        } else {
+          emit(AuthUnAuthenticatedState());
         }
       },
     );

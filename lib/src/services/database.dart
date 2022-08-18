@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:electrops/src/models/firebase_file.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
@@ -54,25 +55,25 @@ class UploadFile {
 }
 
 class FierStore {
-  CollectionReference db1 = FirebaseFirestore.instance.collection('users');
+  static Future<List<String>> _getDownloadLinks(List<Reference> refs) =>
+      Future.wait(refs.map((ref) => ref.getDownloadURL()).toList());
 
-  List getFirebaseImageFolder() {
-    final Reference firebaseStorageRef =
-        FirebaseStorage.instance.ref().child('images/');
-    firebaseStorageRef.listAll().then((result) {
-      imagesFromFS = result as List;
-    });
-    return imagesFromFS;
-  }
-}
+  Future<List<FirebaseFile>> listAll(String path) async {
+    final storageRef = FirebaseStorage.instance.ref(path);
+    final listResult = await storageRef.listAll();
 
-Future<String?> getUser(String email) async {
-  try {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-    final snapshot = await users.doc(email).get();
-    final data = snapshot.data() as Map<String, dynamic>;
-    return data['full_name'];
-  } catch (e) {
-    return 'Error fetching user';
+    final urls = await _getDownloadLinks(listResult.items);
+
+    return urls
+        .asMap()
+        .map((index, url) {
+          final ref = listResult.items[index];
+          final name = ref.name;
+          final file = FirebaseFile(ref: ref, name: name, url: url);
+
+          return MapEntry(index, file);
+        })
+        .values
+        .toList();
   }
 }
