@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
     );
   }
 }

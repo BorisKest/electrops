@@ -1,13 +1,12 @@
+import 'package:electrops/src/models/user_model.dart';
 import 'package:electrops/src/services/authentication.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class DrawerWidget extends StatelessWidget {
   final String profileImage = 'assets/images/avatar.png';
-  final String name = 'John Doe';
+  final String name = GetUserData().name;
   final String status = 'online';
-  const DrawerWidget({Key? key}) : super(key: key);
+  DrawerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class DrawerWidget extends StatelessWidget {
         children: [
           DrawerHeader(
             child: Padding(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               child: Row(
                 children: [
                   Material(
@@ -27,7 +26,7 @@ class DrawerWidget extends StatelessWidget {
                     child: Image.asset(profileImage),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -91,10 +90,8 @@ class DrawerWidget extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Row(children: const [
-              Icon(Icons.settings_outlined),
-              Text('Sign out')
-            ]),
+            title: Row(
+                children: const [Icon(Icons.exit_to_app), Text('Sign out')]),
             onTap: () {
               Authrnticator().signOut();
               Navigator.of(context).pushReplacementNamed('/');

@@ -4,7 +4,7 @@ import 'package:electrops/src/UI/auth_signUp_screen.dart';
 import 'package:electrops/src/UI/favorit_screen.dart';
 import 'package:electrops/src/UI/home_screen/home_screen.dart';
 import 'package:electrops/src/UI/search_screen.dart';
-import 'package:electrops/src/UI/upload_screen.dart';
+import 'package:electrops/src/UI/upload/upload_screen.dart';
 import 'package:electrops/src/bloc/authentication%20_bloc/authentication_bloc.dart';
 import 'package:electrops/src/bloc/data_bloc/data_bloc.dart';
 import 'package:electrops/src/bloc/settings_bloc/settings_bloc.dart';
@@ -51,7 +51,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: _correntBloc,
-            child: const Favorit_screen(),
+            child: const FavoritScreen(),
           ),
         );
       case '/account':

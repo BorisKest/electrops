@@ -22,12 +22,16 @@ class ProductCard extends StatelessWidget {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.12,
-            child: Image.network(
-              image,
-              fit: BoxFit.fitHeight,
+            child: Material(
+              clipBehavior: Clip.hardEdge,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Image.network(
+                image,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
             child: Text(
@@ -45,7 +49,6 @@ class ProductCard extends StatelessWidget {
               style: const TextStyle(fontSize: 12),
             ),
           ),
-          // change with db asap
         ],
       ),
     );
