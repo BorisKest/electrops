@@ -1,3 +1,4 @@
+import 'package:electrops/src/UI/categories_screen.dart';
 import 'package:electrops/src/UI/drawer/drawer_menu.dart';
 import 'package:electrops/src/UI/home_screen/widgets/navigation_card.dart';
 import 'package:electrops/src/UI/home_screen/widgets/product_card.dart';
@@ -39,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Spacer(),
           IconButton(
               onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/bucket');
                 // buc buc bucket
               },
               icon: const Icon(Icons.shopping_bag))
@@ -81,12 +83,26 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: const [
+                children: [
                   NavigationCard(icon: Icons.sell_outlined, text: 'Selling'),
-                  NavigationCard(
-                      icon: Icons.category_outlined, text: 'Categories'),
-                  NavigationCard(
-                      icon: Icons.favorite_border_outlined, text: 'Favorite'),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoriesScreen()),
+                      );
+                    },
+                    child: NavigationCard(
+                        icon: Icons.category_outlined, text: 'Categories'),
+                  ),
+                  GestureDetector(
+                    onTap: (() {
+                      Navigator.of(context).pushReplacementNamed('/favorit');
+                    }),
+                    child: NavigationCard(
+                        icon: Icons.favorite_border_outlined, text: 'Favorite'),
+                  ),
                   NavigationCard(
                       icon: Icons.trending_up_outlined, text: 'Trends'),
                 ],
@@ -131,7 +147,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     itemCount: files.length,
                                     itemBuilder: ((context, index) {
                                       final file = files[index];
-
                                       return ProductCard(
                                           image: file.url,
                                           text: file.name,

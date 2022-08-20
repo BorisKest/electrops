@@ -1,3 +1,4 @@
+import 'package:electrops/src/UI/product_screen/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -13,43 +14,57 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      height: MediaQuery.of(context).size.height * 0.25,
-      width: MediaQuery.of(context).size.width * 0.25,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.12,
-            child: Material(
-              clipBehavior: Clip.hardEdge,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: Image.network(
-                image,
-                fit: BoxFit.fill,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductScreen(
+              image: image,
+              name: text,
+              price: price,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        height: MediaQuery.of(context).size.height * 0.25,
+        width: MediaQuery.of(context).size.width * 0.25,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.12,
+              child: Material(
+                clipBehavior: Clip.hardEdge,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: Image.network(
+                  image,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-            child: Text(
-              text,
-              style: const TextStyle(
-                fontSize: 10,
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
+              child: Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 10,
+                ),
+                maxLines: 3,
               ),
-              maxLines: 3,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
-            child: Text(
-              price,
-              style: const TextStyle(fontSize: 12),
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
+              child: Text(
+                price,
+                style: const TextStyle(fontSize: 12),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:electrops/src/UI/account_screen.dart';
 import 'package:electrops/src/UI/auth_signIn_screen.dart';
 import 'package:electrops/src/UI/auth_signUp_screen.dart';
+import 'package:electrops/src/UI/bucket_screen.dart';
 import 'package:electrops/src/UI/favorit_screen.dart';
 import 'package:electrops/src/UI/home_screen/home_screen.dart';
 import 'package:electrops/src/UI/search_screen.dart';
@@ -73,6 +74,13 @@ class AppRouter {
           builder: (_) => BlocProvider.value(
             value: DataBloc(),
             child: const UploadScreen(),
+          ),
+        );
+      case '/bucket':
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: DataBloc(),
+            child: const BucketScreen(),
           ),
         );
       default: //logging screen
