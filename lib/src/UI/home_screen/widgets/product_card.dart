@@ -36,14 +36,25 @@ class ProductCard extends StatelessWidget {
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.12,
-              child: Material(
-                clipBehavior: Clip.hardEdge,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Image.network(
-                  image,
-                  fit: BoxFit.fill,
-                ),
+              child: Stack(
+                children: <Widget>[
+                  Material(
+                    clipBehavior: Clip.hardEdge,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Image.network(
+                      image,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  IconButton(
+                    alignment: Alignment.bottomRight,
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.favorite_border_outlined,
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(

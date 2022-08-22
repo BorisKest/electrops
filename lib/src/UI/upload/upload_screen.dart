@@ -73,7 +73,7 @@ class _UploadScreenState extends State<UploadScreen> {
                   isExpanded: isExpanded[0],
                 ),
               ],
-              expansionCallback: (panelIndex, _isExpanded) {
+              expansionCallback: (int panelIndex, bool _isExpanded) {
                 setState(() {
                   _isExpanded = !_isExpanded;
                 });
