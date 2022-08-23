@@ -1,9 +1,6 @@
 import 'package:electrops/src/UI/drawer/drawer_menu.dart';
-import 'package:electrops/src/UI/widgets/text_fild.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:electrops/src/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -13,36 +10,27 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  var user = FirebaseAuth.instance.currentUser;
-  String name = '';
-  String email = '';
-  String profilePhoto = '';
-  void userData() {
-    if (user != null) {
-      name = user!.displayName!;
-      profilePhoto = user!.photoURL ??
-          'https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png';
-      email = user!.email!;
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    userData();
+    GetUserData().userData();
   }
+
+  final name = GetUserData().name;
+  var email = GetUserData().email;
+  var profilePhoto = GetUserData().profilePhoto;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account'),
+        title: const Text('Account'),
         actions: [
           IconButton(
             onPressed: () {
               //settings here
             },
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
           ),
         ],
       ),
@@ -61,17 +49,17 @@ class _AccountScreenState extends State<AccountScreen> {
                       child: Image.network(profilePhoto)),
                   TextButton(
                     child: Text(
-                      'Name: ' + name,
-                      style: TextStyle(color: Colors.black),
+                      'Name: $name',
+                      style: const TextStyle(color: Colors.black),
                     ),
                     onPressed: () {
-                      user?.updateDisplayName('jhon');
+                      //GetUserData.user.updateDisplayName('jhon');
                     },
                   ),
                   TextButton(
-                    child: Text('email:' + email),
+                    child: Text('email:$email'),
                     onPressed: () {
-                      user?.updateEmail('');
+                      //user?.updateEmail('');
                     },
                   ),
                 ],
@@ -80,7 +68,7 @@ class _AccountScreenState extends State<AccountScreen> {
           ],
         ),
       ),
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
     );
   }
 }

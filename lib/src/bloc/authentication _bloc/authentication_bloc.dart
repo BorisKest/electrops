@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
-import 'package:electrops/src/models/user_model.dart';
 import 'package:electrops/src/services/authentication.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
