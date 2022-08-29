@@ -1,7 +1,6 @@
 import 'package:electrops/src/UI/drawer/drawer_menu.dart';
 import 'package:electrops/src/UI/upload/widgets/textfild_card.dart';
 import 'package:electrops/src/bloc/data_bloc/data_bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +16,7 @@ class _UploadScreenState extends State<UploadScreen> {
   late TextEditingController descriptionTextFildController;
   late TextEditingController priceTextFildController;
 
-  List<bool> isExpanded = [false];
+  bool isExpanded = false;
 
   @override
   void initState() {
@@ -65,19 +64,8 @@ class _UploadScreenState extends State<UploadScreen> {
               text: 'Title',
               textFildController: titleTextFildController,
             ),
-            ExpansionPanelList(
-              children: [
-                ExpansionPanel(
-                  headerBuilder: (context, isExpanded) => Text('Category'),
-                  body: Text('op'),
-                  isExpanded: isExpanded[0],
-                ),
-              ],
-              expansionCallback: (int panelIndex, bool _isExpanded) {
-                setState(() {
-                  _isExpanded = !_isExpanded;
-                });
-              },
+            Row(
+              children: [],
             ),
             TextFildCard(
               text: 'Description',

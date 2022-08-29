@@ -35,6 +35,15 @@ class UploadFile {
 
   final picker = ImagePicker();
 
+  // get data about image to upload on firestore
+  Future getDataToUpload(
+    String? title,
+    String? category,
+    String? description,
+    String? price,
+  ) async {}
+
+  // upload data to firestore and firebase storage
   Future uploadImaeToFirebase() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
@@ -42,7 +51,7 @@ class UploadFile {
       File fileName = File(basename(imageFile.path));
       Reference firebaseStorageRef =
           FirebaseStorage.instance.ref().child('images/$fileName');
-
+      FirebaseFirestore.instance.collection('data').add({'data': '$fileName'});
       try {
         await firebaseStorageRef.putFile(imageFile);
       } on FirebaseException catch (e) {
