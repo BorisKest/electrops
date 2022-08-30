@@ -84,26 +84,27 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  NavigationCard(icon: Icons.sell_outlined, text: 'Selling'),
+                  const NavigationCard(
+                      icon: Icons.sell_outlined, text: 'Selling'),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoriesScreen()),
+                            builder: (context) => const CategoriesScreen()),
                       );
                     },
-                    child: NavigationCard(
+                    child: const NavigationCard(
                         icon: Icons.category_outlined, text: 'Categories'),
                   ),
                   GestureDetector(
                     onTap: (() {
                       Navigator.of(context).pushReplacementNamed('/favorit');
                     }),
-                    child: NavigationCard(
+                    child: const NavigationCard(
                         icon: Icons.favorite_border_outlined, text: 'Favorite'),
                   ),
-                  NavigationCard(
+                  const NavigationCard(
                       icon: Icons.trending_up_outlined, text: 'Trends'),
                 ],
               ),

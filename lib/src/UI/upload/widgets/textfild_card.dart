@@ -17,7 +17,7 @@ class TextFildCard extends StatelessWidget {
             child: Text('$text: '),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width - 100,
+            width: MediaQuery.of(context).size.width - 150,
             child: TextField(
               controller: textFildController,
             ),

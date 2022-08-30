@@ -31,7 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
       ),
       body: CustomScrollView(
-        slivers: [],
+        slivers: const [],
       ),
       drawer: DrawerWidget(),
     );
