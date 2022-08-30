@@ -20,6 +20,7 @@ class _UploadScreenState extends State<UploadScreen> {
 
   bool isExpanded = false;
   StringCharacters? characters = StringCharacters.animals;
+  String selectedCategory = 'animals';
 
   @override
   void initState() {
@@ -56,7 +57,8 @@ class _UploadScreenState extends State<UploadScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: FloatingActionButton(
                         onPressed: () {
-                          databloc.add(UploadDataEvent());
+                          databloc
+                              .add(UploadDataEvent(category: selectedCategory));
                         },
                         child: const Icon(Icons.upload_rounded),
                       ),
@@ -82,6 +84,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           onChanged: (value) {
                             setState(() {
                               characters = value;
+                              selectedCategory = value.toString();
                             });
                           },
                         ),
@@ -97,6 +100,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           onChanged: (value) {
                             setState(() {
                               characters = value;
+                              selectedCategory = value.toString();
                             });
                           },
                         ),
@@ -112,6 +116,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           onChanged: (value) {
                             setState(() {
                               characters = value;
+                              selectedCategory = value.toString();
                             });
                           },
                         ),
@@ -127,6 +132,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           onChanged: (value) {
                             setState(() {
                               characters = value;
+                              selectedCategory = value.toString();
                             });
                           },
                         ),
@@ -142,6 +148,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           onChanged: (value) {
                             setState(() {
                               characters = value;
+                              selectedCategory = value.toString();
                             });
                           },
                         ),
@@ -157,6 +164,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           onChanged: (value) {
                             setState(() {
                               characters = value;
+                              selectedCategory = value.toString();
                             });
                           },
                         ),

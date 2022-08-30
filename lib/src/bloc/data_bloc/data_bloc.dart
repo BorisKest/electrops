@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:bloc/bloc.dart';
 import 'package:electrops/src/services/database.dart';
 import 'package:meta/meta.dart';
@@ -11,7 +13,12 @@ class DataBloc extends Bloc<DataEvent, DataState> {
     on<DataEvent>((event, emit) {});
     on<UploadDataEvent>(
       (event, emit) {
-        UploadFile().uploadImaeToFirebase();
+        UploadFile().uploadImaeToFirebase(
+          event.title,
+          event.category,
+          event.description,
+          event.price,
+        );
       },
     );
   }
