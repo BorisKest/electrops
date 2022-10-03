@@ -16,7 +16,7 @@ class _AccountScreenState extends State<AccountScreen> {
     GetUserData().userData();
   }
 
-  final name = GetUserData().name;
+  var name = GetUserData().name;
   var email = GetUserData().email;
   var profilePhoto = GetUserData().profilePhoto;
 
@@ -53,12 +53,13 @@ class _AccountScreenState extends State<AccountScreen> {
                       style: const TextStyle(color: Colors.black),
                     ),
                     onPressed: () {
-                      //GetUserData.user.updateDisplayName('jhon');
+                      GetUserData().user!.updateDisplayName('jhon');
                     },
                   ),
                   TextButton(
                     child: Text('email:$email'),
                     onPressed: () {
+                      print(profilePhoto);
                       //user?.updateEmail('');
                     },
                   ),

@@ -9,9 +9,30 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  late TextEditingController searchTextController;
+
+  @override
+  void initState() {
+    super.initState();
+    searchTextController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          SizedBox(
+            width: 300,
+            child: TextField(
+              controller: searchTextController,
+            ),
+          ),
+        ],
+      ),
+      body: CustomScrollView(
+        slivers: const [],
+      ),
       drawer: DrawerWidget(),
     );
   }

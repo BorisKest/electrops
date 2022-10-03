@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ProductScreen extends StatelessWidget {
   String image;
@@ -23,7 +21,7 @@ class ProductScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Text(name),
-                  Spacer(),
+                  const Spacer(),
                   Text(price),
                 ],
               ),
